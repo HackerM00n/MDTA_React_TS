@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import App from "./App";
-import './index.css'
+import App from "app/App";
+import 'index.css'
 
 const theme = createTheme({
   palette: {

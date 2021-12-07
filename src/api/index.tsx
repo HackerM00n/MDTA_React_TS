@@ -1,17 +1,18 @@
+import IDiagram from "types/IDiagram";
+import ICheckbox from "types/ICheckbox";
+
 const API_DOMAIN = "https://localhost:5001/api/v1";
 
-export const getProperties = async (type: number) => {
+export const getProperties = async (scope: number): Promise<ICheckbox[]> => {
   try {
-    const response = await fetch(`${API_DOMAIN}/variant${type}/getProperties`);
+    const response = await fetch(`${API_DOMAIN}/variant${scope}/getProperties`);
 
     if (response.status !== 200) return [];
 
-    return (await response.json()).map(
-      ({ id, description }: any) => ({
-        id,
-        description,
-      })
-    );
+    return (await response.json()).map(({ id, description }: any) => ({
+      id,
+      description,
+    }));
   } catch (error) {
     alert("API is not available");
     console.log(error);
@@ -19,7 +20,27 @@ export const getProperties = async (type: number) => {
   }
 };
 
-export const calculateBestOption = async (type: number, keys: number[]) => {
+export const getTypes = async (scope: number): Promise<ICheckbox[]> => {
+  try {
+    const response = await fetch(`${API_DOMAIN}/variant${scope}/getTypes`);
+
+    if (response.status !== 200) return [];
+
+    return (await response.json()).map(({ id, description }: any) => ({
+      id,
+      description,
+    }));
+  } catch (error) {
+    alert("API is not available");
+    console.log(error);
+    return [];
+  }
+};
+
+export const calculateBestOption = async (
+  type: number,
+  keys: number[]
+): Promise<string> => {
   try {
     const response = await fetch(
       `${API_DOMAIN}/variant${type}/calculateBestOptions?${keys
@@ -27,7 +48,7 @@ export const calculateBestOption = async (type: number, keys: number[]) => {
         .join("&")}`
     );
 
-    if (response.status !== 200) return [];
+    if (response.status !== 200) return "";
 
     const json = await response.json();
 
@@ -38,3 +59,8 @@ export const calculateBestOption = async (type: number, keys: number[]) => {
     return "";
   }
 };
+
+export const getDiagramImage = (scope: number, type: number): IDiagram => ({
+  type,
+  imageUrl: `${API_DOMAIN}/variant${scope}/getDiagram?type=${type}`,
+});

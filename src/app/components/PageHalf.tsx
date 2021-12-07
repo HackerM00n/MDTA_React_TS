@@ -1,7 +1,8 @@
 import Grid from "@mui/material/Grid";
-import IPagePart from "types/IPagePart";
 
-function PagePart({ children, xs = 6, windowHeight }: IPagePart) {
+import IPageHalf from "types/IPageHalf";
+
+function PageHalf({ children, xs = 6, windowHeight }: IPageHalf) {
   return (
     <Grid item xs={xs}>
       <Grid
@@ -17,4 +18,4 @@ function PagePart({ children, xs = 6, windowHeight }: IPagePart) {
   );
 }
 
-export default PagePart;
+export default PageHalf;

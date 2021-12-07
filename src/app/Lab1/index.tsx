@@ -1,31 +1,18 @@
 import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 
-import PagePart from "./components/PagePart";
+import PageHalf from "../components/PageHalf";
 import Form from "./components/Form";
 import BestOption from "./components/BestOption";
+import ILab from "types/ILab";
 import Constants from "values";
 import { calculateBestOption } from "api";
 
-function Lab1({
-  isLoading,
-  setIsLoading,
-}: {
-  isLoading: boolean;
-  setIsLoading: (value: boolean) => any;
-}) {
+function Lab1({ isLoading, setIsLoading, windowHeight }: ILab) {
   const [bestOption, setBestOption] = useState<string>("");
-  const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight);
 
   useEffect(() => {
     document.title = Constants.LABELS.productionModel;
-
-    const updateWindowHeight = (): void => {
-      setWindowHeight(window.innerHeight);
-    };
-
-    window.addEventListener("resize", updateWindowHeight);
-    return () => window.removeEventListener("resize", updateWindowHeight);
   }, []);
 
   const onCaclulate = async (type: number, keys: number[]) => {
@@ -45,18 +32,18 @@ function Lab1({
   return (
     <>
       <Grid container spacing={2}>
-        <PagePart windowHeight={windowHeight}>
+        <PageHalf windowHeight={windowHeight}>
           <Form
             onSubmit={onCaclulate}
-            onSwitch={onFormSwitch}
+            onScopeChange={onFormSwitch}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
             minHeight={minHeight}
           />
-        </PagePart>
-        <PagePart windowHeight={windowHeight}>
+        </PageHalf>
+        <PageHalf windowHeight={windowHeight}>
           <BestOption bestOption={bestOption} minHeight={minHeight} />
-        </PagePart>
+        </PageHalf>
       </Grid>
     </>
   );

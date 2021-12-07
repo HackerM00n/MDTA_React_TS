@@ -1,8 +1,8 @@
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 
-import Constants from "values";
 import IBestOption from "types/IBestOption";
+import Constants from "values";
 
 const BestOption = ({ bestOption, minHeight }: IBestOption) => {
   return (

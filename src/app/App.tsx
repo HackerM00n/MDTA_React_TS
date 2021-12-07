@@ -1,24 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import LinearProgress from "@mui/material/LinearProgress";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-import Lab1 from "pages/Lab1";
-import Lab2 from "pages/Lab2";
-import Lab3 from "pages/Lab3";
-import Lab4 from "pages/Lab4";
+import Lab1 from "./Lab1";
+import Lab2 from "./Lab2";
+// import Lab3 from "pages/Lab3";
+// import Lab4 from "pages/Lab4";
 import Constants from "values";
 
 function App() {
   const route = useLocation();
-
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [windowHeight, setWindowHeight] = useState<number>(window.innerHeight);
+
+  useEffect(() => {
+    const updateWindowHeight = (): void => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    window.addEventListener("resize", updateWindowHeight);
+    return () => window.removeEventListener("resize", updateWindowHeight);
+  }, []);
 
   const selectTab = (_: any, value: string) => navigate(value);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const labsProps = {
+    isLoading,
+    setIsLoading,
+    windowHeight,
+  };
 
   return (
     <>
@@ -36,13 +50,10 @@ function App() {
         </Tabs>
       </Box>
       <Routes>
-        <Route
-          path={"/"}
-          element={<Lab1 isLoading={isLoading} setIsLoading={setIsLoading} />}
-        />
-        <Route path="/2" element={<Lab2 />} />
-        <Route path="/3" element={<Lab3 />} />
-        <Route path="/4" element={<Lab4 />} />
+        <Route path={"/"} element={<Lab1 {...labsProps} />} />
+        <Route path="/2" element={<Lab2 {...labsProps} />} />
+        {/* <Route path="/3" element={<Lab3 {...labsProps} />} />
+        <Route path="/4" element={<Lab4 {...labsProps} />} /> */}
       </Routes>
     </>
   );
