@@ -11,6 +11,8 @@ const LABELS = {
   bestOption: "Оптимальний варіант",
   productionModel: "Продукційна модель",
   semanticWeb: "Cемантична мережа",
+  frameModel: "Фреймова модель",
+  frameResults: "Фрейм-результати"
 };
 
 const constants = {

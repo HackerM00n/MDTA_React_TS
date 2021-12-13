@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import ScopeSelect from "app/components/ScopeSelect";
 import Checkboxes from "app/components/Checkboxes";
 import ICheckbox from "types/ICheckbox";
-import IForm from "types/IForm";
+import IForm1 from "types/IForm1";
 import Constants from "values";
 import { getProperties } from "api";
 
@@ -16,8 +16,8 @@ function Form({
   minHeight,
   onSubmit,
   setIsLoading,
-}: IForm) {
-  const [type, setType] = useState<number>();
+}: IForm1) {
+  const [scope, setScope] = useState<number>();
   const [checkboxes, setCheckboxes] = useState<ICheckbox[]>([]);
   const [checkboxesValues, setCheckboxesValues] = useState<any>({});
 
@@ -35,7 +35,7 @@ function Form({
     const _checkboxes = await getProperties(value);
 
     setCheckboxesValues({});
-    setType(value);
+    setScope(value);
     setCheckboxes(_checkboxes);
     setIsLoading(false);
   };
@@ -47,7 +47,7 @@ function Form({
       if (checkboxesValues[key]) keys.push(key);
     }
 
-    if (keys.length && type && onSubmit) onSubmit(type, keys);
+    if (keys.length && scope && onSubmit) onSubmit(scope, keys);
   };
 
   return (

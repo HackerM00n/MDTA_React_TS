@@ -7,8 +7,7 @@ import Tab from "@mui/material/Tab";
 
 import Lab1 from "./Lab1";
 import Lab2 from "./Lab2";
-// import Lab3 from "pages/Lab3";
-// import Lab4 from "pages/Lab4";
+import Lab3 from "./Lab3";
 import Constants from "values";
 
 function App() {
@@ -45,15 +44,13 @@ function App() {
         <Tabs value={route.pathname} onChange={selectTab} centered>
           <Tab label={Constants.LABELS.productionModel} value="/" />
           <Tab label={Constants.LABELS.semanticWeb} value="/2" />
-          {/* <Tab label="Lab 3" value="/3" />
-          <Tab label="Lab 4" value="/4" /> */}
+          <Tab label={Constants.LABELS.frameModel} value="/3" />
         </Tabs>
       </Box>
       <Routes>
         <Route path={"/"} element={<Lab1 {...labsProps} />} />
         <Route path="/2" element={<Lab2 {...labsProps} />} />
-        {/* <Route path="/3" element={<Lab3 {...labsProps} />} />
-        <Route path="/4" element={<Lab4 {...labsProps} />} /> */}
+        <Route path="/3" element={<Lab3 {...labsProps} />} />
       </Routes>
     </>
   );

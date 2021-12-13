@@ -20,7 +20,7 @@ function Lab1({ isLoading, setIsLoading, windowHeight }: ILab) {
 
     const bestOption = await calculateBestOption(type, keys);
 
-    setBestOption(bestOption || Constants.LABELS.notFound);
+    setBestOption(bestOption?.name || Constants.LABELS.notFound);
 
     setIsLoading(false);
   };

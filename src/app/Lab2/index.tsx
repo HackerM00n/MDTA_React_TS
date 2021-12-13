@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 
 import PageHalf from "app/components/PageHalf";
 import Form from "./components/Form";
-import DiagramLayers from "./components/DiagramLayers";
+import DiagramLayers from "app/components/DiagramLayers";
 import IDiagram from "types/IDiagram";
 import ILab from "types/ILab";
 import Constants from "values";
@@ -50,7 +50,7 @@ function Lab2({ isLoading, setIsLoading, windowHeight }: ILab) {
         />
       </PageHalf>
       <PageHalf windowHeight={windowHeight} xs={8}>
-        <DiagramLayers diagrams={diagrams} />
+        <DiagramLayers diagrams={diagrams} scale={115}/>
       </PageHalf>
     </Grid>
   );

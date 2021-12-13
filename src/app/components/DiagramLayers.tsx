@@ -1,12 +1,12 @@
 import IDiagramLayers from "types/IDiagramLayers";
 
-function DiagramLayers({ diagrams }: IDiagramLayers) {
+function DiagramLayers({ diagrams, scale = 100, height = 70 }: IDiagramLayers) {
   return (
     <div
       style={{
         position: "relative",
         width: "90%",
-        height: "70%",
+        height: height + "%",
         background: "white",
         borderRadius: "50px",
         border: "solid #bababa 2px",
@@ -20,8 +20,8 @@ function DiagramLayers({ diagrams }: IDiagramLayers) {
           src={diagram.imageUrl}
           style={{
             position: "absolute",
-            maxHeight: "115%",
-            maxWidth: "115%",
+            maxHeight: scale + "%",
+            maxWidth: scale + "%",
             left: "50%",
             top: "50%",
             transform: "translate(-50%, -50%)",

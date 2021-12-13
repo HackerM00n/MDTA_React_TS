@@ -6,11 +6,11 @@ import InputLabel from "@mui/material/InputLabel";
 import ScopeSelect from "app/components/ScopeSelect";
 import Checkboxes from "app/components/Checkboxes";
 import ICheckbox from "types/ICheckbox";
-import IForm from "types/IForm";
+import IForm2 from "types/IForm2";
 import Constants from "values";
 import { getTypes } from "api";
 
-function Form({ minHeight, setIsLoading, onScopeChange, onCheck }: IForm) {
+function Form({ minHeight, setIsLoading, onScopeChange, onCheck }: IForm2) {
   const [scope, setScope] = useState<number>();
   const [checkboxes, setCheckboxes] = useState<ICheckbox[]>([]);
   const [checkboxesValues, setCheckboxesValues] = useState<any>({});
